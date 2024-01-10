@@ -8,6 +8,13 @@ const ADD_POST = 'app/posts/ADD_POST';
 // Akcje
 export const getAllPosts = (state) => state.posts;
 
+export const editPost = (post) => {
+    return {
+        type: 'EDIT_POST',
+        payload: post,
+    };
+};
+
 // Akcje kreatorów
 export const deletePostSuccess = (postId) => ({
     type: DELETE_POST_SUCCESS,
