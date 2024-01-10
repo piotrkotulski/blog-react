@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPosts, deletePostSuccess, deletePostFailure } from '../../../redux/postRedux'; // Zmieniono importy akcji
+import { getAllPosts, deletePostSuccess} from '../../../redux/postRedux';
 import { Button, Container, Modal, Card } from "react-bootstrap";
 import styles from "./SinglePost.module.scss";
 
@@ -21,13 +21,11 @@ const SinglePost = () => {
     };
 
     const handleDeleteClick = () => {
-        // Pokaż okno modalne z potwierdzeniem usuwania
         handleShowModal();
     };
 
     const handleConfirmDelete = () => {
-        // Wywołaj akcję usuwania posta
-        dispatch(deletePostSuccess(id)); // Użyj deletePostSuccess zamiast deletePostAction
+        dispatch(deletePostSuccess(id));
     };
 
     if (!post) {
