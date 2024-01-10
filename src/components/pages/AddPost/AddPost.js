@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import AddPostForm from "../../features/AddPostForm/AddPostForm";
 
@@ -12,7 +12,7 @@ const AddPost = () => {
     return (
         <div>
             <h1>ADD POST</h1>
-            <AddPostForm onPostAdded={handlePostAdded} />
+            <AddPostForm onPostAdded={handlePostAdded}/>
         </div>
     );
 }
