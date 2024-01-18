@@ -12,8 +12,9 @@ const EditPostForm = () => {
     const posts = useSelector((state) => state.posts);
     const post = posts.find((p) => p.id === id);
 
-    const handleSubmit = (post) => {
-        dispatch(editPost(post));
+    const handleSubmit = post => {
+        console.log('Dispatching editPost with:', post);
+        dispatch(editPost({ ...post, id }));
         navigate('/');
     };
 

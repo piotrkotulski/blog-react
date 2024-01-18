@@ -4,13 +4,15 @@ import initialState from './initialState';
 const DELETE_POST_SUCCESS = 'app/posts/DELETE_POST_SUCCESS';
 const DELETE_POST_FAILURE = 'app/posts/DELETE_POST_FAILURE';
 const ADD_POST = 'app/posts/ADD_POST';
+const EDIT_POST = 'app/posts/EDIT_POST';
 
 // Akcje
 export const getAllPosts = (state) => state.posts;
 
 export const editPost = (post) => {
+    console.log('editPost action payload:', post);
     return {
-        type: 'EDIT_POST',
+        type: EDIT_POST,
         payload: post,
     };
 };
@@ -46,6 +48,12 @@ const postsReducer = (statePart = initialState, action) => {
             const newPost = action.payload;
             return [...statePart, newPost];
         }
+        case EDIT_POST: {
+            console.log('Post ID type:', typeof statePart[0].id);
+            console.log('Payload ID type:', typeof action.payload.id);
+            return statePart.map(post => post.id === action.payload.id ? {...post, ...action.payload} : post);
+        }
+
         default:
             return statePart;
     }
