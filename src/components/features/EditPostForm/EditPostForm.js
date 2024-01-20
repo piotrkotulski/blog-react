@@ -12,8 +12,8 @@ const EditPostForm = () => {
     const posts = useSelector((state) => state.posts);
     const post = posts.find((p) => p.id === id);
 
+
     const handleSubmit = post => {
-        console.log('Dispatching editPost with:', post);
         dispatch(editPost({ ...post, id }));
         navigate('/');
     };
@@ -22,6 +22,13 @@ const EditPostForm = () => {
         navigate('/');
         return null;
     }
+    const convertDate = (dateStr) => {
+        if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+            return dateStr;
+        }
+        const [day, month, year] = dateStr.split('-');
+        return `${year}-${month}-${day}`;
+    };
 
     return (
         <div className='w-50'>
@@ -31,7 +38,7 @@ const EditPostForm = () => {
                 actionText="Edit Post"
                 title={post.title}
                 author={post.author}
-                publishedDate={post.publishedDate}
+                publishedDate={convertDate(post.publishedDate)}
                 shortDescription={post.shortDescription}
                 content={post.content}
             />
