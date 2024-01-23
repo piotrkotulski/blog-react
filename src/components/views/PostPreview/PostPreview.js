@@ -13,7 +13,7 @@ const PostPreview = ({ post }) => {
                 <Card.Subtitle className="mb-4 text-muted">
                     Published: {dateToStr(post.publishedDate)}
                 </Card.Subtitle>
-                <Card.Text dangerouslySetInnerHTML={{ __html: post.content }} />
+                <Card.Text dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
                 <Link to={`/post/${post.id}`}>
                     <Button variant="primary">Read more</Button>
                 </Link>

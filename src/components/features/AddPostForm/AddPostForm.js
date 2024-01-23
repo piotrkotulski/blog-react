@@ -11,7 +11,11 @@ const AddPostForm = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = (post) => {
-        const newPost = { ...post, id: uuidv4() };
+        const newPost = {
+            ...post,
+            id: uuidv4(),
+            publishedDate: post.publishedDate || new Date()
+        };
         dispatch(addPost(newPost));
         navigate('/');
     };
