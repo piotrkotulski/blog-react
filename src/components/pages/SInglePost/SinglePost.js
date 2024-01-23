@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllPosts, deletePostSuccess} from '../../../redux/postRedux';
 import { Button, Container, Modal, Card } from "react-bootstrap";
 import styles from "./SinglePost.module.scss";
+import dateToStr from '../../../utils/dateToStr';
 
 const SinglePost = () => {
     const { id } = useParams();
@@ -39,8 +40,10 @@ const SinglePost = () => {
                     <Card.Body>
                         <Card.Title as="h3">{post.title}</Card.Title>
                         <Card.Subtitle className="mb-2 mt-4 text-muted">Author: {post.author}</Card.Subtitle>
-                        <Card.Subtitle className="mb-4 text-muted">Published: {post.publishedDate}</Card.Subtitle>
-                        <Card.Text>{post.shortDescription}</Card.Text>
+                        <Card.Subtitle className="mb-4 text-muted">
+                            Published: {dateToStr(post.publishedDate)}
+                        </Card.Subtitle>
+                        <Card.Text dangerouslySetInnerHTML={{ __html: post.content }} />
                     </Card.Body>
                 </Card>
             </Container>

@@ -22,13 +22,13 @@ const EditPostForm = () => {
         navigate('/');
         return null;
     }
-    const convertDate = (dateStr) => {
+/*    const convertDate = (dateStr) => {
         if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
             return dateStr;
         }
         const [day, month, year] = dateStr.split('-');
         return `${year}-${month}-${day}`;
-    };
+    };*/
 
     return (
         <div className='w-50'>
@@ -38,7 +38,7 @@ const EditPostForm = () => {
                 actionText="Edit Post"
                 title={post.title}
                 author={post.author}
-                publishedDate={convertDate(post.publishedDate)}
+                publishedDate={new Date(post.publishedDate)}
                 shortDescription={post.shortDescription}
                 content={post.content}
             />

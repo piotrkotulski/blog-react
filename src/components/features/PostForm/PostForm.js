@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 const PostForm = ({ action, actionText, ...props }) => {
     const [title, setTitle] = useState(props.title || '');
@@ -25,15 +30,21 @@ const PostForm = ({ action, actionText, ...props }) => {
             </Form.Group>
             <Form.Group controlId="publishedDate">
                 <Form.Label className='mt-3'>Published Date</Form.Label>
-                <Form.Control type="date" name="publishedDate" value={publishedDate} onChange={(e) => setPublishedDate(e.target.value)} required />
+                <ReactDatePicker
+                    selected={new Date(publishedDate)}
+                    onChange={(date) => setPublishedDate(date)}
+                    dateFormat="MM/dd/yyyy"
+                    className="form-control"
+                    required
+                />
             </Form.Group>
             <Form.Group className='mt-3' controlId="shortDescription">
                 <Form.Label>Short description</Form.Label>
-                <Form.Control as="textarea" name="shortDescription" value={shortDescription} onChange={(e) => setShortDescription(e.target.value)} required />
+                <ReactQuill  name="shortDescription" value={shortDescription} onChange={setShortDescription} required />
             </Form.Group>
             <Form.Group className='mt-3' controlId="content">
                 <Form.Label>Main content</Form.Label>
-                <Form.Control as="textarea" name="content" value={content} onChange={(e) => setContent(e.target.value)} required rows={4} />
+                <ReactQuill name="content" value={content} onChange={setContent}  />
             </Form.Group>
 
             <Button className='mt-3' variant="primary" type="submit">
