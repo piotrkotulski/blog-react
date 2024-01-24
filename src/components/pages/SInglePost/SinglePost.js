@@ -43,6 +43,7 @@ const SinglePost = () => {
                         <Card.Subtitle className="mb-4 text-muted">
                             Published: {dateToStr(post.publishedDate)}
                         </Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">Category: {post.category}</Card.Subtitle>
                         <Card.Text dangerouslySetInnerHTML={{ __html: post.content }} />
                     </Card.Body>
                 </Card>

@@ -11,7 +11,6 @@ const AddPost = () => {
 
     return (
         <div>
-            <h1>ADD POST</h1>
             <AddPostForm onPostAdded={handlePostAdded}/>
         </div>
     );

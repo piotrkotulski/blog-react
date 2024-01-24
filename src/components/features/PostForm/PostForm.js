@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -18,12 +19,14 @@ const PostForm = ({ action, actionText, ...props }) => {
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
     const [contentError, setContentError] = useState(false);
     const [dateError, setDateError] = useState(false);
+    const categories = useSelector(state => state.categories);
+    console.log(categories);
 
     const handleSubmit = () => {
         setContentError(!content);
         setDateError(!publishedDate);
         if (content && publishedDate) {
-            action({ title, author, publishedDate, shortDescription, content });
+            action({ title, author, publishedDate, shortDescription, content, categories });
         }
     };
 
@@ -61,6 +64,16 @@ const PostForm = ({ action, actionText, ...props }) => {
                     required
                 />
                 {dateError && <small className="d-block form-text text-danger mt-2">Date can't be empty</small>}
+            </Form.Group>
+            <Form.Group className='mt-3' controlId="category">
+                <Form.Label>Category</Form.Label>
+                <Form.Select {...register("category", { required: true })} defaultValue={props.category || (categories.length > 0 ? categories[0] : '')}>
+
+                {categories.map(category => (
+                        <option key={category} value={category}>{category}</option>
+                    ))}
+                </Form.Select>
+                {errors.category && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
             <Form.Group className='mt-3' controlId="shortDescription">
                 <Form.Label>Short description</Form.Label>

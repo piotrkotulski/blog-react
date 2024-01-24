@@ -5,6 +5,7 @@ import styles from "./PostPreview.module.scss";
 import dateToStr from '../../../utils/dateToStr';
 
 const PostPreview = ({ post }) => {
+    console.log(post);
     return (
         <Card className={styles.card}>
             <Card.Body >
@@ -13,6 +14,7 @@ const PostPreview = ({ post }) => {
                 <Card.Subtitle className="mb-4 text-muted">
                     Published: {dateToStr(post.publishedDate)}
                 </Card.Subtitle>
+                 <Card.Subtitle className="mb-2 text-muted">Category: {post.category}</Card.Subtitle>
                 <Card.Text dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
                 <Link to={`/post/${post.id}`}>
                     <Button variant="primary">Read more</Button>
