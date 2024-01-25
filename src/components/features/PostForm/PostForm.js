@@ -36,12 +36,13 @@ const PostForm = ({ action, actionText, ...props }) => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                    {...register("title", { required: true })}
+                    {...register("title", { required: true, minLength: 3  })}
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                     type="text" placeholder="Enter title"
                 />
                 {errors.title && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+                {errors.title && errors.title.type === "minLength" && <small className="d-block form-text text-danger mt-2">Title is too short (min is 3)</small>}
             </Form.Group>
             <Form.Group className='mt-3' controlId="author">
                 <Form.Label>Author</Form.Label>
